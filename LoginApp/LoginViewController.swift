@@ -8,6 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var logInButton: UIButton!
@@ -35,22 +36,26 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func logInPressed() {
-        guard let inputText = nameTF.text, !inputText.isEmpty && nameTF.text == userName else {
-            showAlert(with: "Invalid Login or Password!", and: "Please, enter correct Login and Password")
+        guard let inputText = nameTF.text, inputText == userName else {
+            showAlert(with: "Invalid Login or Password!",
+                      and: "Please, enter correct Login and Password")
             return
         }
-        guard let inputText = passwordTF.text, !inputText.isEmpty && passwordTF.text == password else {
-            showAlert(with: "Invalid Login or Password!", and: "Please, enter correct Login and Password")
+        guard let inputText = passwordTF.text, inputText == password else {
+            showAlert(with: "Invalid Login or Password!",
+                      and: "Please, enter correct Login and Password")
             return
         }
     }
     
     @IBAction func forgotLoginTapped() {
-        showAlert(with: "Oops!", and: "Your Login is: \(userName) \(emogi)")
+        showAlert(with: "Oops!",
+                  and: "Your Login is: \(userName) \(emogi)")
     }
     
     @IBAction func forgotPasswordTapped() {
-        showAlert(with: "Oops!", and: "Your Password is: \(password) \(emogi)")
+        showAlert(with: "Oops!",
+                  and: "Your Password is: \(password) \(emogi)")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -58,7 +63,6 @@ class LoginViewController: UIViewController {
         nameTF.text = wellcomeVC.textForLabel
         passwordTF.text = wellcomeVC.textForLabel
     }
-
 }
 
 extension LoginViewController {

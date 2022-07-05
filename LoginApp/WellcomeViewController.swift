@@ -10,21 +10,13 @@ import UIKit
 class WellcomeViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var logOutButton: UIButton!
-    
-    let emogi1 = "\u{1F44D}"
-    var gradientLayer: CAGradientLayer!
+    private var gradientLayer: CAGradientLayer!
     var textForLabel: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = textForLabel + "! " + "\(emogi1)"
+        nameLabel.text = textForLabel + "!"
         createGradientLayer()
-    }
-    
-    @IBAction func logOutButtonPressed() {
-        dismiss(animated: true)
-        textForLabel = ""
     }
     
     private func createGradientLayer() {

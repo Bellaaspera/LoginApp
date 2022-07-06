@@ -11,18 +11,21 @@ class WellcomeViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     private var gradientLayer: CAGradientLayer!
-    var textForLabel: String!
+    var textForLabel: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = textForLabel + "!"
         createGradientLayer()
+        guard let textForLabel = textForLabel else {
+            return
+        }
+        nameLabel.text = textForLabel + "!"
     }
     
     private func createGradientLayer() {
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.orange.cgColor]
+        gradientLayer.colors = [UIColor.purple.cgColor, UIColor.blue.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

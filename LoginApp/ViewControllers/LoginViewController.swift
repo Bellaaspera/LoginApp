@@ -11,8 +11,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
-    
-    private let emogi = "\u{1F496}"
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tabBarVC = segue.destination as? UITabBarController else { return }
@@ -24,7 +22,7 @@ class LoginViewController: UIViewController {
             } else if let navigationVC = viewController as? UINavigationController {
                 guard let infoVC = navigationVC.topViewController as? InformationViewController else { return }
                 infoVC.title = "Information About Me"
-                infoVC.view.backgroundColor = .green
+                infoVC.view.backgroundColor = .orange
                 infoVC.nameLabel.text = Person.getPersonData().name + " " + Person.getPersonData().surName
                 infoVC.descriptionLabel.text = Person.getPersonData().description
             }
@@ -41,7 +39,7 @@ class LoginViewController: UIViewController {
               passwordTF.text == Person.getPersonData().registrationData.1
         else {
             showAlert(
-                with: "Invalid Login or Password!",
+                with: "Invalid Login or Password! \n🤬",
                 and: "Please, enter correct Login and Password",
                 textfield: passwordTF
             )
@@ -53,15 +51,16 @@ class LoginViewController: UIViewController {
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
         ? showAlert(with: "Oops!",
-                    and: "Your Username is: \(Person.getPersonData().registrationData.0) \(emogi)")
+                    and: "Your Username is: \(Person.getPersonData().registrationData.0) 😜")
         : showAlert(with: "Oops!",
-                    and: "Your Password is: \(Person.getPersonData().registrationData.1) \(emogi)")
+                    and: "Your Password is: \(Person.getPersonData().registrationData.1) 🥳")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         nameTF.text = ""
         passwordTF.text = ""
     }
+    
 }
 
 extension LoginViewController {
@@ -74,4 +73,5 @@ extension LoginViewController {
         present(alert, animated: true)
     }
 }
+
 

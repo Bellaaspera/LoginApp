@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
+    let person = Person.getPersonData()
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tabBarVC = segue.destination as? UITabBarController else { return }
@@ -18,13 +19,12 @@ class LoginViewController: UIViewController {
         
         viewControllers.forEach { viewController in
             if let wellcomeVC = viewController as? WellcomeViewController {
-                wellcomeVC.textForLabel = Person.getPersonData().name
+                wellcomeVC.person = person
             } else if let navigationVC = viewController as? UINavigationController {
                 guard let infoVC = navigationVC.topViewController as? InformationViewController else { return }
                 infoVC.title = "Information About Me"
                 infoVC.view.backgroundColor = .orange
-                infoVC.nameLabel.text = Person.getPersonData().name + " " + Person.getPersonData().surName
-                infoVC.descriptionLabel.text = Person.getPersonData().description
+                infoVC.person = person
             }
         }
     }
@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func logInPressed() {
-        guard nameTF.text == Person.getPersonData().registrationData.0,
-              passwordTF.text == Person.getPersonData().registrationData.1
+        guard nameTF.text == person.registrationData.0,
+              passwordTF.text == person.registrationData.1
         else {
             showAlert(
                 with: "Invalid Login or Password! \n🤬",
@@ -51,9 +51,9 @@ class LoginViewController: UIViewController {
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
         ? showAlert(with: "Oops!",
-                    and: "Your Username is: \(Person.getPersonData().registrationData.0) 😜")
+                    and: "Your Username is: \(person.registrationData.0) 😜")
         : showAlert(with: "Oops!",
-                    and: "Your Password is: \(Person.getPersonData().registrationData.1) 🥳")
+                    and: "Your Password is: \(person.registrationData.1) 🥳")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {

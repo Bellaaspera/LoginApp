@@ -11,15 +11,12 @@ class WellcomeViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     private var gradientLayer: CAGradientLayer!
-    var textForLabel: String?
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createGradientLayer()
-        guard let textForLabel = textForLabel else {
-            return
-        }
-        nameLabel.text = textForLabel + "!"
+        nameLabel.text = person.name + "!"
     }
     
     private func createGradientLayer() {

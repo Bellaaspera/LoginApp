@@ -25,6 +25,7 @@ struct Person {
     var name: String
     var surName: String
     var occupation: String
+    var image: String
 
     var description: String { getDescription() }
     
@@ -33,7 +34,8 @@ struct Person {
             registrationData: ("User", "Password"),
             name: "Светлана",
             surName: "Сенаторова",
-            occupation: "продюсер на телевидении"
+            occupation: "продюсер на телевидении",
+            image: ""
         )
     }
     
